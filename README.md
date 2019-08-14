@@ -1,5 +1,4 @@
-# EconomKino_TelegramBot_v2.0
-NULP | EkonomKino: Telegram bot | 2.0 | Project |
+# Econom Kino: Telegram Bot v2.0
 
 
 People always strive to find the fastest and the cheapest ways to solve their problems. The goal of our project is to help people with one of the issues.

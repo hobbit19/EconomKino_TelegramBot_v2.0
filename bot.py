@@ -1,17 +1,55 @@
-from EconomKino import token, const, markups
+from EconomKino import token, const, markups, logger
 
 import telebot
 from telebot.types import Message
 
 bot = telebot.TeleBot(token.TOKEN)
-print("It's working...")
 
 
+# PROCESSING COMMANDS
 @bot.message_handler(commands=['start'])
 def message_handler(message: Message):
     bot.send_message(message.from_user.id,
                      text=('Привіт!\nЯ Економ Кіно Бот ' + const.POPCORN_EMOJI),
                      reply_markup=markups.main_menu)
+    logger.log_message(message)
 
 
+@bot.message_handler(commands=['help'])
+def message_handler(message: Message):
+    bot.send_message(message.from_user.id, const.INFO, reply_markup=markups.main_menu)
+    logger.log_message(message)
+
+
+# PROCESSING REPLY KEYBOARD
+@bot.message_handler(content_types='text')
+def back(message: Message):
+    if message.text == const.LEFTWARDS_ARROW_EMOJI + ' Назад':
+        bot.send_message(message.from_user.id, '...', reply_markup=markups.main_menu)
+
+    # Main menu
+    elif message.text == const.CINEMA_EMOJI + ' Старт':
+        bot.send_message(message.from_user.id, 'Виберіть день:', reply_markup=markups.calendar_markup)
+    elif message.text == const.LOCATION_EMOJI + ' Локації':
+        bot.send_message(message.from_user.id, 'Виберіть кінотеатр:', reply_markup=markups.cinemas_markup)
+    elif message.text == const.INFO_EMOJI + ' Інфо':
+        bot.send_message(message.from_user.id, const.INFO)
+
+    # Cinemas location
+    elif message.text == 'Multiplex: Victoria Gardens':
+        bot.send_message(message.from_user.id, 'Шукаю Локацію ' + const.SEARCH_EMOJI)
+        bot.send_location(message.from_user.id, 49.807352, 23.977764)
+    elif message.text == 'Планета Кіно: Forum':
+        bot.send_message(message.from_user.id, 'Шукаю Локацію ' + const.SEARCH_EMOJI)
+        bot.send_location(message.from_user.id, 49.849907, 24.022289)
+    elif message.text == 'Планета Кіно: King Cross':
+        bot.send_message(message.from_user.id, 'Шукаю Локацію ' + const.SEARCH_EMOJI)
+        bot.send_location(message.from_user.id, 49.7738874, 24.0087695)
+    elif message.text == 'Multiplex: Spartak':
+        bot.send_message(message.from_user.id, 'Шукаю Локацію ' + const.SEARCH_EMOJI)
+        bot.send_location(message.from_user.id, 49.869772, 24.0223554)
+    logger.log_message(message)
+
+
+print('It\'s working...')
 bot.polling(none_stop=True)

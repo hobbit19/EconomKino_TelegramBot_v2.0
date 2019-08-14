@@ -14,8 +14,8 @@ main_menu.row(const.CINEMA_EMOJI + ' Старт', const.LOCATION_EMOJI + ' Ло�
 
 # CINEMAS REPLY MARKUP
 cinemas_markup = types.ReplyKeyboardMarkup(True, False)
-cinemas_markup.row('Планета Кіно: Forum', 'Multiplex: Spartak')
-cinemas_markup.row('Планета Кіно: King Cross', 'Multiplex: Victoria Gardens')
+cinemas_markup.row('Планета Кіно: Forum ' + const.NIGHT_CITY_EMOJI, 'Multiplex:\nSpartak ' + const.RUNNER_EMOJI)
+cinemas_markup.row('Планета Кіно:\nKing Cross ' + const.CROWN_EMOJI, 'Multiplex:\nVictoria Gardens ' + const.TREE_EMOJI)
 cinemas_markup.row(const.LEFTWARDS_ARROW_EMOJI + ' Назад')
 
 

@@ -10,7 +10,8 @@ INFO = "Ідея проекту полягає в тому, щоб корист�
        "буде працювати через APi сервера."
 
 # Cinemas
-CINEMAS_LIST = ["f", "Multiplex Spartak",
+CINEMAS_LIST = ["#Press F to pay respect",
+                "Multiplex Spartak",
                 "Multiplex Victoria Gardens",
                 "Планета Кіно Forum",
                 "Планета Кіно King Cross"]
@@ -21,6 +22,7 @@ DIGIT_KEYCAPS_EMOJI = ['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5
                        '1️⃣2️⃣', '1️⃣3️⃣', '1️⃣4️⃣', '1️⃣5️⃣', '16', '17', '18', '19', '20',
                        '16', '17', '18', '19', '20']
 KEYMAP_EMOJI = '#️⃣'
+
 LEFTWARDS_ARROW_EMOJI = '\U00002B05'
 LOCATION_EMOJI        = '\U0001F4CD'
 CINEMA_EMOJI          = '\U0001F3A6'
@@ -31,6 +33,7 @@ REFRESH_EMOJI         = '\U0001f504'
 POPCORN_EMOJI         = '\U0001f37f'
 FIRES_EMOJI           = '\U0001F389'
 CALENDAR_EMOJI        = '\U0001F4C5'
-
-
-
+TREE_EMOJI            = '\U0001F333'
+CROWN_EMOJI           = '\U0001F451'
+RUNNER_EMOJI          = '\U0001F3C3'
+NIGHT_CITY_EMOJI      = '\U0001F303'

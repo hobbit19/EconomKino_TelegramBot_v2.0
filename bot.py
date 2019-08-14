@@ -36,18 +36,18 @@ def back(message: Message):
         bot.send_message(message.from_user.id, const.INFO)
 
     # Cinemas location
-    elif message.text == 'Multiplex: Victoria Gardens':
+    elif message.text == 'Multiplex:\nVictoria Gardens ' + const.TREE_EMOJI:
         bot.send_message(message.from_user.id, 'Шукаю Локацію ' + const.SEARCH_EMOJI)
         bot.send_location(message.from_user.id, 49.807352, 23.977764)
-    elif message.text == 'Планета Кіно: Forum':
+    elif message.text == 'Планета Кіно: Forum ' + const.NIGHT_CITY_EMOJI:
         bot.send_message(message.from_user.id, 'Шукаю Локацію ' + const.SEARCH_EMOJI)
         bot.send_location(message.from_user.id, 49.849907, 24.022289)
-    elif message.text == 'Планета Кіно: King Cross':
+    elif message.text == 'Планета Кіно:\nKing Cross ' + const.CROWN_EMOJI:
         bot.send_message(message.from_user.id, 'Шукаю Локацію ' + const.SEARCH_EMOJI)
-        bot.send_location(message.from_user.id, 49.7738874, 24.0087695)
-    elif message.text == 'Multiplex: Spartak':
+        bot.send_location(message.from_user.id, 49.7734383, 24.0113537)
+    elif message.text == 'Multiplex:\nSpartak ' + const.RUNNER_EMOJI:
         bot.send_message(message.from_user.id, 'Шукаю Локацію ' + const.SEARCH_EMOJI)
-        bot.send_location(message.from_user.id, 49.869772, 24.0223554)
+        bot.send_location(message.from_user.id, 49.869722, 24.0223554)
     logger.log_message(message)
 
 

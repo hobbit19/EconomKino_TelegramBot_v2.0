@@ -12,6 +12,13 @@ main_menu = types.ReplyKeyboardMarkup(True, False)
 main_menu.row(const.CINEMA_EMOJI + ' Старт', const.LOCATION_EMOJI + ' Локації', const.INFO_EMOJI + ' Інфо')
 
 
+# CINEMAS REPLY MARKUP
+cinemas_markup = types.ReplyKeyboardMarkup(True, False)
+cinemas_markup.row('Планета Кіно: Forum', 'Multiplex: Spartak')
+cinemas_markup.row('Планета Кіно: King Cross', 'Multiplex: Victoria Gardens')
+cinemas_markup.row(const.LEFTWARDS_ARROW_EMOJI + ' Назад')
+
+
 # CALENDAR INLINE MARKUP
 # day_01 is today, day_02 - tomorrow and so on
 day_01 = dt.today()

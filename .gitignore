@@ -122,15 +122,15 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# PyCharm
+.idea
+
 # Private files
 tests.py
+token.py
 token.cpython-36.pyc
 __pycache__/token.cpython-37.pyc
-token.py
-secretToken.py
-secretToken.cpython-36.pyc
 __pycache__/secretToken.cpython-37.pyc
-users.txt
 
 # Mac OS
 .DS_Store

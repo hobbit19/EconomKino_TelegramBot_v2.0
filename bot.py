@@ -4,7 +4,9 @@ import telebot
 from telebot.types import Message
 
 
-threads.SessionsRefresher().start()
+parsers.parse_all()
+parsers.create_film_lists()
+markups.update_film_lists_markup()
 
 bot = telebot.TeleBot(token.TOKEN)
 
@@ -52,6 +54,64 @@ def text_handler(message: Message):
         bot.send_message(message.from_user.id, 'Шукаю Локацію ' + const.SEARCH_EMOJI)
         bot.send_location(message.from_user.id, 49.869722, 24.0223554)
     logger.log_message(message)
+
+
+# PROCESSING INLINE KEYBOARD
+@bot.callback_query_handler(func=lambda call: True)
+def callback_inline(call):
+    # Dates
+    if call.data == markups.day_01_callback:
+        bot.edit_message_text(chat_id=call.from_user.id,
+                              text="Фільми, які будуть в прокаті у цей день:",
+                              message_id=call.message.message_id)
+        bot.edit_message_reply_markup(chat_id=call.from_user.id,
+                                      message_id=call.message.message_id,
+                                      reply_markup=markups.day_01_films)
+    elif call.data == markups.day_02_callback:
+        bot.edit_message_text(chat_id=call.from_user.id,
+                              text="Фільми, які будуть в прокаті у цей день:",
+                              message_id=call.message.message_id)
+        bot.edit_message_reply_markup(chat_id=call.from_user.id,
+                                      message_id=call.message.message_id,
+                                      reply_markup=markups.day_02_films)
+    elif call.data == markups.day_03_callback:
+        bot.edit_message_text(chat_id=call.from_user.id,
+                              text="Фільми, які будуть в прокаті у цей день:",
+                              message_id=call.message.message_id)
+        bot.edit_message_reply_markup(chat_id=call.from_user.id,
+                                      message_id=call.message.message_id,
+                                      reply_markup=markups.day_03_films)
+    elif call.data == markups.day_04_callback:
+        bot.edit_message_text(chat_id=call.from_user.id,
+                              text="Фільми, які будуть в прокаті у цей день:",
+                              message_id=call.message.message_id)
+        bot.edit_message_reply_markup(chat_id=call.from_user.id,
+                                      message_id=call.message.message_id,
+                                      reply_markup=markups.day_04_films)
+    elif call.data == markups.day_05_callback:
+        bot.edit_message_text(chat_id=call.from_user.id,
+                              text="Фільми, які будуть в прокаті у цей день:",
+                              message_id=call.message.message_id)
+        bot.edit_message_reply_markup(chat_id=call.from_user.id,
+                                      message_id=call.message.message_id,
+                                      reply_markup=markups.day_05_films)
+    elif call.data == markups.day_06_callback:
+        bot.edit_message_text(chat_id=call.from_user.id,
+                              text="Фільми, які будуть в прокаті у цей день:",
+                              message_id=call.message.message_id)
+        bot.edit_message_reply_markup(chat_id=call.from_user.id,
+                                      message_id=call.message.message_id,
+                                      reply_markup=markups.day_06_films)
+
+    # Lists of films
+    elif call.data == "back_to_calendar":
+        bot.edit_message_text(chat_id=call.from_user.id,
+                              text="Виберіть день: ",
+                              message_id=call.message.message_id)
+        bot.edit_message_reply_markup(chat_id=call.from_user.id,
+                                      message_id=call.message.message_id,
+                                      reply_markup=markups.calendar_markup)
+    logger.log_call(call)
 
 
 print('It\'s working...')

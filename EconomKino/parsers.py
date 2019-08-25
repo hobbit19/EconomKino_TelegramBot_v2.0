@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 from babel.dates import format_datetime
 
-from EconomKino.markups import day_01, day_02, day_03, day_04, day_05, day_06
+from EconomKino import markups
 from EconomKino.const import OK
 
 
@@ -59,19 +59,19 @@ def parse_multiplex(base_url, date, cinema):
 def parse_all():
     global day_01_sessions, day_02_sessions, day_03_sessions, day_04_sessions, day_05_sessions, day_06_sessions
 
-    day_01_sessions += parse_multiplex(viktoria_url, format_datetime(day_01, 'ddMMYYYY', locale='uk_UA'), 2)
-    day_02_sessions += parse_multiplex(viktoria_url, format_datetime(day_02, 'ddMMYYYY', locale='uk_UA'), 2)
-    day_03_sessions += parse_multiplex(viktoria_url, format_datetime(day_03, 'ddMMYYYY', locale='uk_UA'), 2)
-    day_04_sessions += parse_multiplex(viktoria_url, format_datetime(day_04, 'ddMMYYYY', locale='uk_UA'), 2)
-    day_05_sessions += parse_multiplex(viktoria_url, format_datetime(day_05, 'ddMMYYYY', locale='uk_UA'), 2)
-    day_06_sessions += parse_multiplex(viktoria_url, format_datetime(day_06, 'ddMMYYYY', locale='uk_UA'), 2)
+    day_01_sessions += parse_multiplex(viktoria_url, format_datetime(markups.day_01, 'ddMMYYYY', locale='uk_UA'), 2)
+    day_02_sessions += parse_multiplex(viktoria_url, format_datetime(markups.day_02, 'ddMMYYYY', locale='uk_UA'), 2)
+    day_03_sessions += parse_multiplex(viktoria_url, format_datetime(markups.day_03, 'ddMMYYYY', locale='uk_UA'), 2)
+    day_04_sessions += parse_multiplex(viktoria_url, format_datetime(markups.day_04, 'ddMMYYYY', locale='uk_UA'), 2)
+    day_05_sessions += parse_multiplex(viktoria_url, format_datetime(markups.day_05, 'ddMMYYYY', locale='uk_UA'), 2)
+    day_06_sessions += parse_multiplex(viktoria_url, format_datetime(markups.day_06, 'ddMMYYYY', locale='uk_UA'), 2)
 
-    day_01_sessions += parse_multiplex(spartak_url, format_datetime(day_01, 'ddMMYYYY', locale='uk_UA'), 1)
-    day_02_sessions += parse_multiplex(spartak_url, format_datetime(day_02, 'ddMMYYYY', locale='uk_UA'), 1)
-    day_03_sessions += parse_multiplex(spartak_url, format_datetime(day_03, 'ddMMYYYY', locale='uk_UA'), 1)
-    day_04_sessions += parse_multiplex(spartak_url, format_datetime(day_04, 'ddMMYYYY', locale='uk_UA'), 1)
-    day_05_sessions += parse_multiplex(spartak_url, format_datetime(day_05, 'ddMMYYYY', locale='uk_UA'), 1)
-    day_06_sessions += parse_multiplex(spartak_url, format_datetime(day_06, 'ddMMYYYY', locale='uk_UA'), 1)
+    day_01_sessions += parse_multiplex(spartak_url, format_datetime(markups.day_01, 'ddMMYYYY', locale='uk_UA'), 1)
+    day_02_sessions += parse_multiplex(spartak_url, format_datetime(markups.day_02, 'ddMMYYYY', locale='uk_UA'), 1)
+    day_03_sessions += parse_multiplex(spartak_url, format_datetime(markups.day_03, 'ddMMYYYY', locale='uk_UA'), 1)
+    day_04_sessions += parse_multiplex(spartak_url, format_datetime(markups.day_04, 'ddMMYYYY', locale='uk_UA'), 1)
+    day_05_sessions += parse_multiplex(spartak_url, format_datetime(markups.day_05, 'ddMMYYYY', locale='uk_UA'), 1)
+    day_06_sessions += parse_multiplex(spartak_url, format_datetime(markups.day_06, 'ddMMYYYY', locale='uk_UA'), 1)
 
 
 def create_film_lists():

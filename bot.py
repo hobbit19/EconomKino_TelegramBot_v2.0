@@ -1,7 +1,10 @@
-from EconomKino import token, const, markups, logger
+from EconomKino import token, const, markups, logger, threads, parsers
 
 import telebot
 from telebot.types import Message
+
+
+threads.SessionsRefresher().start()
 
 bot = telebot.TeleBot(token.TOKEN)
 
@@ -23,7 +26,7 @@ def message_handler(message: Message):
 
 # PROCESSING REPLY KEYBOARD
 @bot.message_handler(content_types='text')
-def back(message: Message):
+def text_handler(message: Message):
     if message.text == const.LEFTWARDS_ARROW_EMOJI + ' Назад':
         bot.send_message(message.from_user.id, '...', reply_markup=markups.main_menu)
 

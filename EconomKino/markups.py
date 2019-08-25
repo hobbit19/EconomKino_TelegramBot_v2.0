@@ -5,7 +5,7 @@ import datetime
 from datetime import datetime as dt
 from babel.dates import format_datetime
 
-from EconomKino import const
+from EconomKino import const, parsers, functions
 
 # MAIN MENU REPLY MARKUP
 main_menu = types.ReplyKeyboardMarkup(True, False)
@@ -49,3 +49,38 @@ calendar_markup.add(InlineKeyboardButton(text=day_01_locale, callback_data=day_0
                     InlineKeyboardButton(text=day_04_locale, callback_data=day_04_callback),
                     InlineKeyboardButton(text=day_05_locale, callback_data=day_05_callback),
                     InlineKeyboardButton(text=day_06_locale, callback_data=day_06_callback))
+
+
+# LISTS OF FILMS INLINE MARKUP
+day_01_films = InlineKeyboardMarkup()
+day_02_films = InlineKeyboardMarkup()
+day_03_films = InlineKeyboardMarkup()
+day_04_films = InlineKeyboardMarkup()
+day_05_films = InlineKeyboardMarkup()
+day_06_films = InlineKeyboardMarkup()
+
+
+def update_film_lists_markup():
+    for film in parsers.day_01_films:
+        day_01_films.add(InlineKeyboardButton(text=film, callback_data=functions.to_callback_data(film)))
+    day_01_films.add(InlineKeyboardButton(text=const.LEFTWARDS_ARROW_EMOJI+' Назад', callback_data="back_to_calendar"))
+
+    for film in parsers.day_02_films:
+        day_02_films.add(InlineKeyboardButton(text=film, callback_data=functions.to_callback_data(film)))
+    day_02_films.add(InlineKeyboardButton(text=const.LEFTWARDS_ARROW_EMOJI+' Назад', callback_data="back_to_calendar"))
+
+    for film in parsers.day_03_films:
+        day_03_films.add(InlineKeyboardButton(text=film, callback_data=functions.to_callback_data(film)))
+    day_03_films.add(InlineKeyboardButton(text=const.LEFTWARDS_ARROW_MOJI+' Назад', callback_data="back_to_calendar"))
+
+    for film in parsers.day_04_films:
+        day_04_films.add(InlineKeyboardButton(text=film, callback_data=functions.to_callback_data(film)))
+    day_04_films.add(InlineKeyboardButton(text=const.LEFTWARDS_ARROW_EMOJI+' Назад', callback_data="back_to_calendar"))
+
+    for film in parsers.day_05_films:
+        day_05_films.add(InlineKeyboardButton(text=film, callback_data=functions.to_callback_data(film)))
+    day_05_films.add(InlineKeyboardButton(text=const.LEFTWARDS_ARROW_EMOJI+' Назад', callback_data="back_to_calendar"))
+
+    for film in parsers.day_06_films:
+        day_06_films.add(InlineKeyboardButton(text=film, callback_data=functions.to_callback_data(film)))
+    day_06_films.add(InlineKeyboardButton(text=const.LEFTWARDS_ARROW_EMOJI+' Назад', callback_data="back_to_calendar"))

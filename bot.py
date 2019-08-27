@@ -1,7 +1,27 @@
-from EconomKino import token, const, markups, logger, threads, parsers
-
+import pymysql
 import telebot
 from telebot.types import Message
+from babel.dates import format_datetime
+
+from EconomKino import token, const, markups, logger, threads, parsers, functions
+
+
+db = pymysql.connect(host="eu-cdbr-west-02.cleardb.net",
+                     user="bdb28d30c292d7",
+                     password="4ad2b3a3",
+                     db="heroku_982b4fce6d3c135")
+cursor = db.cursor()
+
+users = []
+new_users = []
+
+
+sql_get_all_users = "SELECT * FROM heroku_982b4fce6d3c135.users;"
+cursor.execute(sql_get_all_users)
+get_all_users_result = cursor.fetchall()
+
+for user in get_all_users_result:
+    users.append({"user_id": user[0], "chosen_date": format_datetime(markups.day_01, "dd_MM")})
 
 
 parsers.parse_all()
@@ -111,6 +131,16 @@ def callback_inline(call):
         bot.edit_message_reply_markup(chat_id=call.from_user.id,
                                       message_id=call.message.message_id,
                                       reply_markup=markups.calendar_markup)
+
+    # Create
+    elif call.data in parsers.day_01_films_callback:
+        all_sessions = ""
+        for ses in parsers.day_01_sessions:
+            if functions.to_callback_data(ses.get("film-name")) == call.data:
+                all_sessions += str(ses.get("price"))
+                all_sessions += "\n"
+        print(all_sessions)
+
     logger.log_call(call)
 
 

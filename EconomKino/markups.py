@@ -71,7 +71,7 @@ def update_film_lists_markup():
 
     for film in parsers.day_03_films:
         day_03_films.add(InlineKeyboardButton(text=film, callback_data=functions.to_callback_data(film)))
-    day_03_films.add(InlineKeyboardButton(text=const.LEFTWARDS_ARROW_MOJI+' Назад', callback_data="back_to_calendar"))
+    day_03_films.add(InlineKeyboardButton(text=const.LEFTWARDS_ARROW_EMOJI+' Назад', callback_data="back_to_calendar"))
 
     for film in parsers.day_04_films:
         day_04_films.add(InlineKeyboardButton(text=film, callback_data=functions.to_callback_data(film)))

@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as bs
 from babel.dates import format_datetime
 
 from EconomKino import markups
+from EconomKino.functions import to_callback_data
 from EconomKino.const import OK
 
 
@@ -22,6 +23,13 @@ day_03_films = set()
 day_04_films = set()
 day_05_films = set()
 day_06_films = set()
+
+day_01_films_callback = set()
+day_02_films_callback = set()
+day_03_films_callback = set()
+day_04_films_callback = set()
+day_05_films_callback = set()
+day_06_films_callback = set()
 
 viktoria_url = 'https://multiplex.ua/ua/cinema/lviv/victoriagardens'
 spartak_url = 'https://multiplex.ua/ua/cinema/lviv/spartak'
@@ -46,7 +54,7 @@ def parse_multiplex(base_url, date, cinema):
         sessions = soup.find_all('div', attrs={'data-anchor': date})
         for tag in sessions:
             films.append({'film-name': tag.attrs['data-name'],
-                          'price': tag.attrs['data-low'][0: len(tag.attrs['data-low'])-2],
+                          'price': int(tag.attrs['data-low'][0: len(tag.attrs['data-low'])-2]),
                           'time': tag.find('span').text,
                           'technology': get_technology(tag.find('p', class_='tag').text),
                           'cinema-id': cinema,
@@ -73,17 +81,30 @@ def parse_all():
     day_05_sessions += parse_multiplex(spartak_url, format_datetime(markups.day_05, 'ddMMYYYY', locale='uk_UA'), 1)
     day_06_sessions += parse_multiplex(spartak_url, format_datetime(markups.day_06, 'ddMMYYYY', locale='uk_UA'), 1)
 
+    day_01_sessions = sorted(day_01_sessions, key=lambda i: i['price'])
+    day_02_sessions = sorted(day_02_sessions, key=lambda i: i['price'])
+    day_03_sessions = sorted(day_03_sessions, key=lambda i: i['price'])
+    day_04_sessions = sorted(day_04_sessions, key=lambda i: i['price'])
+    day_05_sessions = sorted(day_05_sessions, key=lambda i: i['price'])
+    day_06_sessions = sorted(day_06_sessions, key=lambda i: i['price'])
+
 
 def create_film_lists():
     for session in day_01_sessions:
         day_01_films.add(session['film-name'])
+        day_01_films_callback.add(to_callback_data(session['film-name']))
     for session in day_02_sessions:
         day_02_films.add(session['film-name'])
+        day_02_films_callback.add(to_callback_data(session['film-name']))
     for session in day_03_sessions:
         day_03_films.add(session['film-name'])
+        day_03_films_callback.add(to_callback_data(session['film-name']))
     for session in day_04_sessions:
         day_04_films.add(session['film-name'])
+        day_04_films_callback.add(to_callback_data(session['film-name']))
     for session in day_05_sessions:
         day_05_films.add(session['film-name'])
+        day_05_films_callback.add(to_callback_data(session['film-name']))
     for session in day_06_sessions:
         day_06_films.add(session['film-name'])
+        day_06_films_callback.add(to_callback_data(session['film-name']))
